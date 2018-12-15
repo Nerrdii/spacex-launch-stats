@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 
 import LaunchItem from './LaunchItem';
+import MissionKey from './MissionKey';
 
 const query = gql`
   query LaunchesQuery {
@@ -20,6 +21,7 @@ export class Launches extends Component {
     return (
       <React.Fragment>
         <h1 className="display-4 my-3">Launches</h1>
+        <MissionKey />
         <Query query={query}>
           {({ loading, error, data }) => {
             if (loading) {
