@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
 import Launches from './components/Launches';
 import Launch from './components/Launch';
@@ -10,7 +9,8 @@ import './App.css';
 import logo from './logo.jpg';
 
 const client = new ApolloClient({
-  uri: '/graphql'
+  uri: '/graphql',
+  cache: new InMemoryCache(),
 });
 
 class App extends Component {
@@ -25,7 +25,7 @@ class App extends Component {
               style={{ width: 300, display: 'block', margin: 'auto' }}
             />
             <Route exact path="/" component={Launches} />
-            <Route exact path="/launch/:flight_number" component={Launch} />
+            <Route exact path="/launch/:flightNumber" component={Launch} />
           </div>
         </Router>
       </ApolloProvider>
